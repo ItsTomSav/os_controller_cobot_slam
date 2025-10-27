@@ -1,0 +1,39 @@
+#niryo_op_space_controller: # Uguale al nome che metterò in ros2_controllers.yaml
+
+ # ros__parameters:
+    # ----- Parametri Fondamentali del Controller -----
+    # Lista dei nomi dei giunti che questo controller gestirà
+    joints: [
+      "joint_1",
+      "joint_2",
+      "joint_3",
+      "joint_4",
+      "joint_5",
+      "joint_6"
+    ]
+
+    # Tipo di interfaccia di comando effort
+    command_interface_type: "effort"
+
+    # ----- Parametri per Pinocchio e TF -----
+    # Percorso al file URDF del robot.
+    urdf_file_path: "/home/tommaso/lab_ROS2/ws_moveit2/src/op_space_controller/config/niryo_ned2_pinoc.urdf" #Da specificare il percorso al file URDF
+
+    # Nomi dei frame di riferimento usati dal controller
+    base_link_name: "base_link"
+    ee_link_name: "tool_link"
+    map_frame_name: "map"
+
+    # ----- Parametri per la Traiettoria Desiderata -----
+    # Percorso al file .txt contenente i waypoint della traiettoria dell'end-effector
+    trajectory_file_path: "/home/tommaso/lab_ROS2/ws_moveit2/src/niryo_moveit2_config/cpp_script/desired_trajectory.txt" # Da specificare il percorso al file desired_trajectory_controller.txt
+
+    trajectory_sample_dt: 0.1
+
+    # ----- Guadagni del Controllore (Esempio per un PD nello Spazio Operativo) -----
+    # Da tunare
+    kp_linear: 50.0                   # Guadagno proporzionale per la parte traslazionale dell'errore
+    kd_linear: 10.0                   # Guadagno derivativo per la parte traslazionale dell'errore
+    kp_angular: 25.0                  # Guadagno proporzionale per la parte rotazionale dell'errore
+    kd_angular: 5.0                   # Guadagno derivativo per la parte rotazionale dell'errore
+

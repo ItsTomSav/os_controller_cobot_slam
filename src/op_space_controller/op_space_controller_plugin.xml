@@ -1,0 +1,7 @@
+<library path="op_space_controller"> 
+    <class name="op_space_controller/OpSpaceController" type="op_space_controller::OpSpaceController" base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Operational Space Controller for the Niryo Ned2 manipulator, using Pinocchio for dynamics and SLAM-based pose estimation feedback for trajectory tracking.
+    </description>
+  </class>
+</library>

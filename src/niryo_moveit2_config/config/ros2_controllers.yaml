@@ -1,0 +1,82 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+#    use_sim_time: true
+
+    niryo_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+# ----- AGGIUNTA CONTROLLORE CUSTOM -----
+    niryo_op_space_controller:
+      type: op_space_controller/OpSpaceController
+
+#    niryo_velocity_controller:
+#      type: velocity_controllers/JointGroupVelocityController
+
+#    niryo_hand_controller:
+#      type: position_controllers/GripperActionController
+
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+niryo_arm_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    allow_nonzero_velocity_at_trajectory_end: false  # Aggiunto questo parametro
+
+# ----- AGGIUNTA CONTROLLORE CUSTOM -----
+niryo_op_space_controller:
+  ros__parameters:
+    #from_file: "/home/tommaso/lab_ROS2/ws_moveit2/src/op_space_controller/config/op_space_controller_parameters.yaml"
+    #from_file: "/home/tommaso/lab_ROS2/ws_moveit2/install/op_space_controller/share/op_space_controller/config/op_space_controller_parameters.yaml"
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+    command_interface_type: "effort"
+    urdf_file_path: "/home/tommaso/lab_ROS2/ws_moveit2/src/op_space_controller/config/niryo_ned2_pinoc.urdf"
+    base_link_name: "base_link"
+    ee_link_name: "tool_link"
+    map_frame_name: "map"
+    trajectory_file_path: "/home/tommaso/lab_ROS2/ws_moveit2/src/niryo_moveit2_config/cpp_script/desired_trajectory.txt"
+    #trajectory_file_path: "/home/tommaso/lab_ROS2/ws_moveit2/src/niryo_moveit2_config/cpp_script/desired_trajectory_2.txt"
+    trajectory_sample_dt: 0.1
+    kp_linear: 40.0 #15.0
+    kd_linear: 12.0 #8.0
+    kp_angular: 20.0 #10.0
+    kd_angular: 9.0 #6.0
+
+#niryo_hand_controller:
+#  ros__parameters:
+#    joint: joint_6
+
+#niryo_velocity_controller:
+#  ros__parameters:
+#    joints:
+#      - joint_1
+#      - joint_2
+#      - joint_3
+#      - joint_4
+#      - joint_5
+#      - joint_6
+#    command_interfaces:
+#      - velocity
+#    state_interfaces:
+#      - position
+#      - velocity
